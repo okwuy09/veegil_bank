@@ -1,8 +1,3 @@
-// To parse this JSON data, do
-//
-//     final transaction = transactionFromJson(jsonString);
-
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 Transaction transactionFromJson(String str) =>
@@ -40,11 +35,11 @@ class TransactionData {
     this.balance,
   });
 
-  String type;
+  Type type;
   double? amount;
   String? phoneNumber;
   DateTime created;
-  int? balance;
+  double? balance;
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
       TransactionData(
@@ -52,7 +47,7 @@ class TransactionData {
         amount: json["amount"] == null ? null : json["amount"].toDouble(),
         phoneNumber: json["phoneNumber"],
         created: DateTime.parse(json["created"]),
-        balance: json["balance"] == null ? null : json["balance"],
+        balance: json["balance"] == null ? null : json["balance"].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -63,21 +58,3 @@ class TransactionData {
         "balance": balance == null ? null : balance,
       };
 }
-
-// enum Type { CREDIT, DEBIT }
-
-// final typeValues = EnumValues({"credit": Type.CREDIT, "debit": Type.DEBIT});
-
-// class EnumValues<T> {
-//   Map<String, T> map;
-//   Map<T, String>? reverseMap;
-
-//   EnumValues(this.map);
-
-//   Map<T, String> get reverse {
-//     if (reverseMap == null) {
-//       reverseMap ??= map.map((k, v) => MapEntry(v, k));
-//     }
-//     return reverseMap!;
-//   }
-// }

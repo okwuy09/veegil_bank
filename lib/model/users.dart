@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final users = usersFromJson(jsonString);
 import 'dart:convert';
 
 Users usersFromJson(String str) => Users.fromJson(json.decode(str));
@@ -40,12 +37,12 @@ class UsersList {
   });
 
   String? phoneNumber;
-  int? balance;
+  double? balance;
   DateTime created;
 
   factory UsersList.fromJson(Map<String, dynamic> json) => UsersList(
         phoneNumber: json["phoneNumber"],
-        balance: json["balance"] == null ? null : json["balance"],
+        balance: json["balance"] == null ? null : json["balance"].toDouble(),
         created: DateTime.parse(json["created"]),
       );
 

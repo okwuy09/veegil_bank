@@ -113,6 +113,7 @@ class Data with ChangeNotifier {
           .map<AccountData>(
               (model) => AccountData.fromJson(model as Map<String, dynamic>))
           .toList();
+      //notifyListeners();
       return account;
     } else {
       throw Exception('Failed to load accountList');

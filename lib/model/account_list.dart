@@ -1,16 +1,13 @@
-// To parse this JSON data, do
-//
-//     final accountLIst = accountLIstFromJson(jsonString);
-
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
-AccountLIst accountLIstFromJson(String str) =>
-    AccountLIst.fromJson(json.decode(str));
+AccountsList accountsListFromJson(String str) =>
+    AccountsList.fromJson(json.decode(str));
 
-String accountLIstToJson(AccountLIst data) => json.encode(data.toJson());
+String accountsListToJson(AccountsList data) => json.encode(data.toJson());
 
-class AccountLIst {
-  AccountLIst({
+class AccountsList {
+  AccountsList({
     required this.status,
     required this.message,
     required this.data,
@@ -20,7 +17,7 @@ class AccountLIst {
   String message;
   List<AccountData> data;
 
-  factory AccountLIst.fromJson(Map<String, dynamic> json) => AccountLIst(
+  factory AccountsList.fromJson(Map<String, dynamic> json) => AccountsList(
         status: json["status"],
         message: json["message"],
         data: List<AccountData>.from(
@@ -42,12 +39,12 @@ class AccountData {
   });
 
   String? phoneNumber;
-  int? balance;
+  double? balance;
   DateTime created;
 
   factory AccountData.fromJson(Map<String, dynamic> json) => AccountData(
         phoneNumber: json["phoneNumber"],
-        balance: json["balance"] == null ? null : json["balance"],
+        balance: json["balance"] == null ? null : json["balance"].toDouble(),
         created: DateTime.parse(json["created"]),
       );
 
